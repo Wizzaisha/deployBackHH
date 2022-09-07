@@ -14,7 +14,7 @@ if (port == null || port == "") {
 
 conn.sync().then(() => {
 
-    server.listen(3001, () => {
+    server.listen(port, () => {
         console.log(`Listen on port ${port}`);
         seederCategory();
         seederRole();
