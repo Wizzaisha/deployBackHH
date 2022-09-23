@@ -94,9 +94,14 @@ router.post("/", async (req, res, next) => {
         
         const receiptUrl = payment.charges.data[0].receipt_url;
 
-        sendEmail(email, receiptUrl);
+        try {
+            sendEmail(email, receiptUrl);
 
-        res.status(201).send({message: "Successfull pay"});
+            res.status(201).send({message: "Successfull pay"});
+        } catch (error) {
+            res.status(400).send({message: error.message});
+        }
+
 
     } catch (error) {
         res.status(404).send({message: error.message});
